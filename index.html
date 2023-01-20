@@ -154,6 +154,14 @@
         .form-control{
             font-size: 13px;
             border-radius: 8px !important;
+            padding-top: 7px;
+            padding-bottom: 7px;
+        }
+        
+        @media only screen and (max-width: 576px) {
+          .col-form-label {
+            text-align: left !important;
+          }
         }
     </style>
 </head>
@@ -173,7 +181,13 @@
                     <div class="card box">
                         <div class="card-body shadow-sm">
                             <div class="text-center mb-4">
-                                <h4>Klinik Master Life</h4>
+                                <h2>Klinik Master Life</h2>
+                               <!--  <div class="row">
+                                    <div class="col-lg-3 col-12 m-auto">
+                                        <hr style="width:50%; border: 2px solid #0094dd; opacity: 0.8; border-radius: 10px; margin: auto; margin-bottom: 2px; margin-left: 10px;">
+                                        <hr style="width:50%; border: 2px solid #8fc83d; opacity: 0.8; border-radius: 10px; margin: auto; margin-right: 16px;">
+                                    </div>
+                                </div> -->
                             </div>
                             <div class="text-center mb-4">
                                 <ul class="steps" style="margin-left: 0">
@@ -194,7 +208,7 @@
                                 </ul>
                             </div>
                             <div class="text-center mt-4 mb-4">
-                                <hr style="width: 50%; border-top: 5px dotted #0094dd; margin: auto;">
+                                <hr style="width: 50%; border-top: 5px dotted #0094dd; margin: auto; opacity: 0.8;">
                             </div>
                             <div class="row">
                                 <div class="col-md-8 m-auto">
@@ -282,8 +296,14 @@
                                     <div class="row">
                                         <div class="col-sm-11">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-light" onclick="stepOne()">Previous</button>
-                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">Next</button>
+                                                <button class="btn btn-sm btn-light" onclick="stepOne()">
+                                                    <i class="fa-solid fa-arrow-left"></i>
+                                                    Previous
+                                                </button>
+                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">
+                                                    Next
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -313,9 +333,15 @@
                                     <div class="row">
                                         <div class="col-sm-11">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-primary">Search</button>
-                                                <button class="btn btn-sm btn-light" onclick="stepOne()">Previous</button>
-                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">Next</button>
+                                                <button class="btn btn-sm btn-primary">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+                                                <button class="btn btn-sm btn-light" onclick="stepOne()">
+                                                    <i class="fa-solid fa-arrow-left"></i>
+                                                    Previous
+                                                </button>
+                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">
+                                                    Next
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -378,8 +404,14 @@
                                     <div class="row">
                                         <div class="col-sm-11">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-light" onclick="stepOne()">Back</button>
-                                                <button class="btn btn-sm btn-success" onclick="stepThree()">Next</button>
+                                                <button class="btn btn-sm btn-light" onclick="stepOne()">
+                                                    <i class="fa-solid fa-arrow-left"></i>
+                                                    Previous
+                                                </button>
+                                                <button class="btn btn-sm btn-success" onclick="stepThree()">
+                                                    Next
+                                                    <i class="fa-solid fa-arrow-right"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -395,14 +427,17 @@
                                       </label>
                                     </div>
                                     <div class="text-center mt-4">
-                                        <button class="btn btn-sm btn-light" onclick="stepTwo()">Back</button>
-                                        <button class="btn btn-sm btn-success" id="finish">Finish</button>
+                                        <button class="btn btn-sm btn-light" onclick="stepTwo()">
+                                            <i class="fa-solid fa-arrow-left"></i>
+                                            Previous
+                                        </button>
+                                        <button class="btn btn-sm btn-success" id="finish"><i class="fa-solid fa-check"></i> Finish</button>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="text-center mt-4 mb-5">
-                                <hr style="width: 50%; border-top: 5px dotted #0094dd; margin: auto;">
+                                <hr style="width: 50%; border-top: 5px dotted #0094dd; margin: auto; opacity: 0.8;">
                             </div>
                         </div>
                     </div>
@@ -422,24 +457,26 @@
                 <h6 class="modal-title" id="exampleModalLabel">Pilih Poliklinik</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body pb-4">
                 <div class="m-2">
                     <form>
-                        <input type="text" name="" class="form-control border-0 shadow-sm pt-2 pb-2" placeholder="Cari Poliklinik Biar Cepet...">
+                        <input type="text" name="" id="cariPoli" class="form-control border-0 shadow-sm" placeholder="Cari Poliklinik Biar Cepet...">
                     </form>
                 </div>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli Umum')">
-                    POLI UMUM
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli Gigi')">
-                    POLI GIGI
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli Anak')">
-                    POLI ANAK
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli KIA')">
-                    POLI KIA
-                </button>
+                <div class="m-1" id="listPoli">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli Umum')">
+                        POLI UMUM
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli Gigi')">
+                        POLI GIGI
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli Anak')">
+                        POLI ANAK
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli KIA')">
+                        POLI KIA
+                    </button>
+                </div>
               </div>
             </div>
           </div>
@@ -454,24 +491,26 @@
                 <h6 class="modal-title" id="exampleModalLabel">Pilih Dokter</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body pb-4">
                 <div class="m-2">
                     <form>
-                        <input type="text" name="" class="form-control border-0 shadow-sm pt-2 pb-2" placeholder="Cari Dokter Biar Cepet...">
+                        <input type="text" name="" id="cariDokter" class="form-control border-0 shadow-sm" placeholder="Cari Dokter Biar Cepet...">
                     </form>
                 </div>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Agus')">
-                    Dr.Agus
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Mei')">
-                    Dr.Mei
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Juli')">
-                    Dr.Juli
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Juno')">
-                    Dr.Juno
-                </button>
+                <div class="m-1" id="listDokter">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Agus')">
+                        Dr.Agus
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Mei')">
+                        Dr.Mei
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Juli')">
+                        Dr.Juli
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Juno')">
+                        Dr.Juno
+                    </button>
+                </div>
               </div>
             </div>
           </div>
@@ -486,24 +525,26 @@
                 <h6 class="modal-title" id="exampleModalLabel">Pilih Jaminan</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
+              <div class="modal-body pb-2">
                 <div class="m-2">
                     <form>
-                        <input type="text" name="" class="form-control border-0 shadow-sm pt-2 pb-2" placeholder="Cari Jaminan Biar Cepet...">
+                        <input type="text" name="" id="cariJaminan" class="form-control border-0 shadow-sm" placeholder="Cari Jaminan Biar Cepet...">
                     </form>
                 </div>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('BPJS')">
-                    BPJS
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('Pribadi')">
-                    Pribadi
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('Admedika')">
-                    Admedika
-                </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('PT. ABC')">
-                    PT. ABC
-                </button>
+                <div class="m-1" id="listJaminan">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('BPJS')">
+                        BPJS
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('Pribadi')">
+                        Pribadi
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('Admedika')">
+                        Admedika
+                    </button>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('PT. ABC')">
+                        PT. ABC
+                    </button>
+                </div>
               </div>
             </div>
           </div>
@@ -519,16 +560,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('20-01-2022, JUMAT')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('20-01-2022, JUMAT')">
                     20-01-2022, JUMAT
                 </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('21-01-2022, SABTU')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('21-01-2022, SABTU')">
                     21-01-2022, SABTU
                 </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('22-01-2022, MINGGU')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('22-01-2022, MINGGU')">
                     22-01-2022, MINGGU
                 </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('23-01-2022, SENIN')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('23-01-2022, SENIN')">
                     23-01-2022, SENIN
                 </button>
               </div>
@@ -546,7 +587,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJam('SORE, (14:00 - 19:00) - (0)')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJam('SORE, (14:00 - 19:00) - (0)')">
                     SORE, (14:00 - 19:00) - (0)
                 </button>
               </div>
@@ -560,19 +601,30 @@
     <script type="text/javascript">
         
         let html = '';
-        for (let i = 1; i <= 40; i++) {
-            let max_width = $(window).width();
-            let max_height = $(window).height();
+        let size = 0;
+        let max_width = $(window).width();
+        let max_height = $(window).height();
+        if (max_width < 576) {
+            size = 10;
+        }else if(max_width < 992){
+            size = 15;
+        }else{
+            size = 30;
+        }
+        for (let i = 1; i <= size; i++) {
+            
             let rand_x = randomInteger(10, max_width);
             let rand_y = randomInteger(10, max_height);
             let rand_opacity = randomFloat(0.2, 0.6, 1);
             let width_img = randomInteger(20, 50);
 
             let iconArray = [
-                'first-aid-kit.png',
-                'vaccine.png',
                 'stethoscope.png',
-                'coronavirus.png',
+                'cardiogram.png',
+                'first-aid-kit.png',
+                'needle.png',
+                'medical-report.png',
+                'pills.png',
             ];
             let randomIcon = Math.floor(Math.random()*iconArray.length);
             let srcImg = iconArray[randomIcon];
@@ -735,6 +787,27 @@
                 $('#step-3').removeClass('complete');
             }
         }
+
+        $("#cariPoli").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#listPoli *").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+        $("#cariDokter").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#listDokter *").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+
+         $("#cariJaminan").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#listJaminan *").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
     </script>
 </body>
 </html>
