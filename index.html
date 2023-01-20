@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservasi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/hover-min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style type="text/css">
+        .animate__animated.infinite{
+            animation-iteration-count: infinite;
+            --animate-duration: 1.5s;
+            animation: myRotate 6s infinite;
+            -webkit-filter: invert(100%); /* Safari/Chrome */
+            filter: invert(100%);
+        }
+
+        @keyframes myRotate {
+          50% {transform: rotate(20deg);}
+        }
+
+        .steps {
+            list-style: none;
+            display: table;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        .step {
+            background-color: #ffffff;
+            width: 45px;
+            height: 45px;
+             padding-top: 0px; 
+            text-align: center;
+            font-size: 16px;
+            border-radius: 100%;
+            border: 4px solid #0094dd;
+            transition: 0.2s;
+        }
+
+        .steps>li {
+            display: table-cell;
+            text-align: center;
+            width: 1%;
+        }
+
+        .steps>li.active .step, .steps>li.active:before, .steps>li.complete .step, .steps>li.complete:before {
+            border-color: #5293C4;
+        }
+
+        .steps>li .step {
+            border: 5px solid #CED1D6;
+            color: #546474;
+            font-size: 14px;
+            border-radius: 100%;
+            position: relative;
+            z-index: 2;
+            display: inline-block;
+            width: 40px;
+            padding-bottom: -200px;
+            height: 40px;
+        }
+        .steps>li .step, .steps>li.complete .step:before {
+            line-height: 30px;
+            background-color: #FFF;
+            text-align: center;
+        }
+
+        .steps>li.active .title, .steps>li.complete .title {
+            color: #2B3D53;
+        }
+        .steps>li .title {
+            display: block;
+            margin-top: 4px;
+            max-width: 100%;
+            color: #949EA7;
+            font-size: 14px;
+            z-index: 104;
+            text-align: center;
+            table-layout: fixed;
+            word-wrap: break-word;
+        }
+        .steps>li.active .step, .steps>li.active:before, .steps>li.complete .step, .steps>li.complete:before {
+            border-color: #5293C4;
+        }
+        .steps>li:first-child:before {
+            max-width: 51%;
+            left: 50%;
+        }
+        .steps>li:last-child:before {
+            max-width: 50%;
+            width: 50%;
+        }
+        .steps>li:before {
+            display: block;
+            content: "";
+            width: 100%;
+            height: 1px;
+            font-size: 0;
+            overflow: hidden;
+            border-top: 4px solid #CED1D6;
+            position: relative;
+            top: 21px;
+            z-index: 1;
+        }
+        
+        .steps>li.class:before {
+            display: block;
+            content: "";
+            width: 10%;
+            height: 1px;
+            font-size: 0;
+            overflow: hidden;
+            border-top: 4px solid #CED1D6;
+            position: relative;
+            top: 21px;
+            z-index: 1;
+        }
+
+        .steps>li.complete .step:before {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            border-radius: 100%;
+            content: "\f00c";
+            z-index: 3;
+            font-family: FontAwesome;
+            font-size: 16px;
+            color: #87BA21;
+        }
+
+        .steps>li.active .step, .steps>li.active:before, .steps>li.complete .step, .steps>li.complete:before {
+            border-color: #5293C4;
+        }
+
+        .step:hover{
+            transform: scale(1.1);
+            transition: 0.2s;
+        }
+
+        .form-control{
+            font-size: 13px;
+            border-radius: 8px !important;
+        }
+    </style>
+</head>
+<body class="background-gradient">
+    <div id="random-position"></div>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center mb-3 mt-3">
+                        <img src="https://demo.myklinik.id/uploaded/logomyklinikputih.png" class="logo " alt="Logo">
+                    </div>
+                </div>   
+            </div>
+            <div class="row">
+                <div class="col-lg-8 m-auto">
+                    <div class="card box">
+                        <div class="card-body shadow-sm">
+                            <div class="text-center mb-4">
+                                <h4>Klinik Master Life</h4>
+                            </div>
+                            <div class="text-center mb-4">
+                                <ul class="steps" style="margin-left: 0">
+                                    <li id="step-1" class="active">
+                                        <span class="step">1</span>
+                                        <span class="title">Input Data</span>
+                                    </li>
+
+                                    <li id="step-2">
+                                        <span class="step">2</span>
+                                        <span class="title">Pilih Jadwal</span>
+                                    </li>
+
+                                    <li id="step-3">
+                                        <span class="step">3</span>
+                                        <span class="title">Selesai</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="text-center mt-4 mb-4">
+                                <hr style="width: 50%; border-top: 5px dotted #0094dd; margin: auto;">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8 m-auto">
+                                    <div class="row">
+                                        <div class="text-center" id="loading">
+                                            <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" width="40px">
+                                        </div>
+                                        <div class="col-sm-6 col-6 option-form">
+                                            <div class="w-100 pilih-pasien text-center shadow-sm hvr-grow" onclick="showFormPasien1();">
+                                                <img src="assets/images/health-check.png" width="45" alt="">
+                                                <p class="fs14 mb-2">Pasien Baru</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-6 option-form">
+                                            <div class="w-100 pilih-pasien text-center shadow-sm hvr-grow" onclick="showFormPasien2();">
+                                                <img src="assets/images/health-check.png" width="45" alt="">
+                                                <p class="fs14 mb-2">Pasien Lama</p>
+                                            </div>
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="row" id="form1">
+                                <div class="col-lg-9 m-auto">
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Nama Pasien</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="Nama">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Alamat</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="Alamat">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">No. HP / WA</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="No. HP / WA">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Email</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jenis Kelamin</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="No. HP / WA">
+                                        </div>
+                                    </div> 
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Tanggal Lahir</label>
+                                        <div class="col-sm-8">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <select class="form-control w-100 border-light shadow-sm">
+                                                        <option>Tanggal</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <select class="form-control w-100 border-light shadow-sm">
+                                                        <option>Bulan</option>
+                                                        <option>Januari</option>
+                                                        <option>Februari</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <select class="form-control w-100 border-light shadow-sm">
+                                                        <option>Tahun</option>
+                                                        <option>2023</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            <div class="text-end">
+                                                <button class="btn btn-sm btn-light" onclick="stepOne()">Previous</button>
+                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="form2">
+                                <div class="col-lg-9 m-auto">
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">MR</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="MR">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Nama Pasien</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="Nama Pasien">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">NIK / No. BJPS</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="NIK / No. BJPS">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            <div class="text-end">
+                                                <button class="btn btn-sm btn-primary">Search</button>
+                                                <button class="btn btn-sm btn-light" onclick="stepOne()">Previous</button>
+                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- step 2 -->
+                            <div class="row" id="content_step_2">
+                                <div class="col-lg-9 m-auto">
+
+                                    <div class="mb-3 row">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Poliklinik</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_poliklinik" placeholder="--Pilih Poliklinik--" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3 row" id="input_dokter">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Dokter</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_dokter" placeholder="--Pilih Dokter--" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row" id="input_jaminan">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jaminan</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_jaminan" placeholder="--Pilih Jaminan--" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row" id="input_tanggal">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Tanggal Booking</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_tanggal" placeholder="--Pilih Tanggal Booking--" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row" id="input_jam">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jam Praktek</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_jam" placeholder="--Pilih Jam Praktek--" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row" id="input_jamdatang">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jam Kedatangan</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_jamdatang" placeholder="Jam Kedatangan">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row" id="input_ket">
+                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Keterangan</label>
+                                        <div class="col-sm-8">
+                                          <input type="text" class="form-control border-light shadow-sm" placeholder="Keterangan">
+                                        </div>
+                                    </div>
+                                  
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            <div class="text-end">
+                                                <button class="btn btn-sm btn-light" onclick="stepOne()">Back</button>
+                                                <button class="btn btn-sm btn-success" onclick="stepThree()">Next</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" id="content_step_3">
+                                <div class="col-lg-8 m-auto">
+                                    <div class="form-check ms-3">
+                                      <input class="form-check-input" type="checkbox" value="" id="agree" onclick="Finish()">
+                                      <label class="form-check-label fs14 text-justify" for="agree">
+                                        Saya menyatakan data-data yang diisikan adalah benar dan dapat dipertanggung jawabkan.
+                                      </label>
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-sm btn-light" onclick="stepTwo()">Back</button>
+                                        <button class="btn btn-sm btn-success" id="finish">Finish</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-4 mb-5">
+                                <hr style="width: 50%; border-top: 5px dotted #0094dd; margin: auto;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="text-center mt-4 pb-4">
+            <img src="https://demo.myklinik.id/uploaded/logomyklinikputih.png" width="80px" style="margin-top: -10px;" alt="Logo">
+            <span class="text-white fw-normal fs14">2023. ALL RIGHTS RESERVED ©</span>
+        </div>
+
+        <!-- Modal Poli -->
+        <div class="modal fade" id="modalPoli" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-light">
+                <h6 class="modal-title" id="exampleModalLabel">Pilih Poliklinik</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="m-2">
+                    <form>
+                        <input type="text" name="" class="form-control border-0 shadow-sm pt-2 pb-2" placeholder="Cari Poliklinik Biar Cepet...">
+                    </form>
+                </div>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli Umum')">
+                    POLI UMUM
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli Gigi')">
+                    POLI GIGI
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli Anak')">
+                    POLI ANAK
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectPoli('Poli KIA')">
+                    POLI KIA
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal poli -->
+
+        <!-- Modal dokter -->
+        <div class="modal fade" id="modalDokter" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-light">
+                <h6 class="modal-title" id="exampleModalLabel">Pilih Dokter</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="m-2">
+                    <form>
+                        <input type="text" name="" class="form-control border-0 shadow-sm pt-2 pb-2" placeholder="Cari Dokter Biar Cepet...">
+                    </form>
+                </div>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Agus')">
+                    Dr.Agus
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Mei')">
+                    Dr.Mei
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Juli')">
+                    Dr.Juli
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectDokter('Dr.Juno')">
+                    Dr.Juno
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal dokter -->
+
+        <!-- Modal jaminan -->
+        <div class="modal fade" id="modalJaminan" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-light">
+                <h6 class="modal-title" id="exampleModalLabel">Pilih Jaminan</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="m-2">
+                    <form>
+                        <input type="text" name="" class="form-control border-0 shadow-sm pt-2 pb-2" placeholder="Cari Jaminan Biar Cepet...">
+                    </form>
+                </div>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('BPJS')">
+                    BPJS
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('Pribadi')">
+                    Pribadi
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('Admedika')">
+                    Admedika
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJaminan('PT. ABC')">
+                    PT. ABC
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal jaminan -->
+
+        <!-- Modal tanggal -->
+        <div class="modal fade" id="modalTanggal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-light">
+                <h6 class="modal-title" id="exampleModalLabel">Pilih Tanggal Booking</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('20-01-2022, JUMAT')">
+                    20-01-2022, JUMAT
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('21-01-2022, SABTU')">
+                    21-01-2022, SABTU
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('22-01-2022, MINGGU')">
+                    22-01-2022, MINGGU
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectTanggal('23-01-2022, SENIN')">
+                    23-01-2022, SENIN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal tanggal -->
+
+        <!-- Modal jam -->
+        <div class="modal fade" id="modalJam" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header border-light">
+                <h6 class="modal-title" id="exampleModalLabel">Pilih Jam Praktek</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-2" onclick="selectJam('SORE, (14:00 - 19:00) - (0)')">
+                    SORE, (14:00 - 19:00) - (0)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end modal jam -->
+   
+    <script src="assets/js/jquery-3.6.3.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+        
+        let html = '';
+        for (let i = 1; i <= 40; i++) {
+            let max_width = $(window).width();
+            let max_height = $(window).height();
+            let rand_x = randomInteger(10, max_width);
+            let rand_y = randomInteger(10, max_height);
+            let rand_opacity = randomFloat(0.2, 0.6, 1);
+            let width_img = randomInteger(20, 50);
+
+            let iconArray = [
+                'first-aid-kit.png',
+                'vaccine.png',
+                'stethoscope.png',
+                'coronavirus.png',
+            ];
+            let randomIcon = Math.floor(Math.random()*iconArray.length);
+            let srcImg = iconArray[randomIcon];
+
+            html += `<div style="position: fixed; left: ${rand_x}px; top: ${rand_y}px; opacity: ${rand_opacity};">
+            <img class="animate__animated animate__pulse infinite animate-icon" src="assets/images/icons/${srcImg}" width="${width_img}px"></div>`;
+        }
+
+        function randomInteger(min, max) {
+              return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randomFloat(min, max, decimals) {
+          const str = (Math.random() * (max - min) + min).toFixed(decimals);
+          return parseFloat(str);
+        }
+        
+        $('#random-position').append(html);
+
+        $('#loading').hide();
+        $('#form1').hide();
+        $('#form2').hide();
+        $('#content_step_2').hide();
+        $('#content_step_3').hide();
+
+        function showFormPasien1() {
+            $('.pilih-pasien').fadeOut();
+            $('.option-form').fadeOut();
+            $('#form1').fadeIn();
+            $('#form2').fadeOut();
+            $('.form-control').fadeIn();
+        }
+
+        function showFormPasien2() {
+            $('.pilih-pasien').fadeOut();
+            $('.option-form').fadeOut();
+            $('#form2').fadeIn();
+            $('#form1').fadeOut();
+            $('.form-control').fadeIn();
+        }
+
+        function stepOne() {
+            $('#form1').fadeOut();
+            $('#form2').fadeOut();
+            $('.option-form').fadeIn();
+            $('.pilih-pasien').fadeIn();
+            $('#content_step_2').fadeOut();
+            $('#step-1').removeClass('complete');
+            $('#step-2').removeClass('complete');
+            $('#step-2').removeClass('active');
+            $('#step-3').removeClass('active');
+        }
+
+        function stepTwo() {
+            $('#form1').fadeOut();
+            $('#form2').fadeOut();
+            $('.option-form').fadeOut();
+            $('.pilih-pasien').fadeOut();
+            $('#content_step_2').fadeIn();
+            $('#content_step_3').fadeOut();
+            $('#step-3').removeClass('active');
+            $('#step-3').removeClass('complete');
+            $('#step-1').addClass('complete');
+            $('#step-2').addClass('active');
+        }
+
+        let agree = 0;
+        function stepThree() {
+            $('#form1').fadeOut();
+            $('#form2').fadeOut();
+            $('.option-form').fadeOut();
+            $('.pilih-pasien').fadeOut();
+            $('#content_step_2').fadeOut();
+            $('#content_step_3').fadeIn();
+            $('#step-2').addClass('complete');
+            $('#step-3').addClass('active');
+
+            if (agree == 1) {
+                $('#finish').fadeIn();
+                $('#step-3').addClass('complete');
+            } else {
+                $('#finish').fadeOut();
+                $('#step-3').removeClass('complete');
+            }
+        }
+
+        $('#input_dokter').hide();
+        $('#input_jaminan').hide();
+        $('#input_tanggal').hide();
+        $('#input_jam').hide();
+        $('#input_jamdatang').hide();
+        $('#input_ket').hide();
+        $('#finish').hide();
+
+        $('#pilih_poliklinik').click(function () {
+            $('#modalPoli').modal('show');
+        });
+        
+        $('#pilih_dokter').click(function () {
+            $('#modalDokter').modal('show');
+        });
+
+        $('#pilih_jaminan').click(function () {
+            $('#modalJaminan').modal('show');
+        });
+
+        $('#pilih_tanggal').click(function () {
+            $('#modalTanggal').modal('show');
+        });
+
+        $('#pilih_jam').click(function () {
+            $('#modalJam').modal('show');
+        });
+
+        function selectPoli(str) {
+            $('#pilih_poliklinik').val('');
+            $('#pilih_poliklinik').val(str);
+            $('#modalPoli').modal('hide');
+            $('#input_dokter').fadeIn();
+        }
+
+        function selectDokter(str) {
+            $('#pilih_dokter').val('');
+            $('#pilih_dokter').val(str);
+            $('#modalDokter').modal('hide');
+            $('#input_jaminan').fadeIn();
+        }
+
+        function selectJaminan(str) {
+            $('#pilih_jaminan').val('');
+            $('#pilih_jaminan').val(str);
+            $('#modalJaminan').modal('hide');
+            $('#input_tanggal').fadeIn();
+        }
+
+        function selectTanggal(str) {
+            $('#pilih_tanggal').val('');
+            $('#pilih_tanggal').val(str);
+            $('#modalTanggal').modal('hide');
+            $('#input_jam').fadeIn();
+        }
+
+        function selectJam(str) {
+            $('#pilih_jam').val('');
+            $('#pilih_jam').val(str);
+            $('#modalJam').modal('hide');
+            $('#input_jamdatang').fadeIn();
+            $('#input_ket').fadeIn();
+        }
+
+        
+        function Finish() {
+            if (agree == 0) {
+                agree = 1;
+                $('#finish').fadeIn();
+                $('#step-3').addClass('complete');
+            } else {
+                agree = 0;
+                $('#finish').fadeOut();
+                $('#step-3').removeClass('complete');
+            }
+        }
+    </script>
+</body>
+</html>
