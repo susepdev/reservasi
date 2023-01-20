@@ -151,7 +151,7 @@
             transition: 0.2s;
         }
 
-        .form-control{
+        .form-control, .form-select {
             font-size: 13px;
             border-radius: 8px !important;
             padding-top: 7px;
@@ -271,21 +271,21 @@
                                         <div class="col-sm-8">
                                             <div class="row">
                                                 <div class="col-4">
-                                                    <select class="form-control w-100 border-light shadow-sm">
+                                                    <select class="form-select w-100 border-light shadow-sm">
                                                         <option>Tanggal</option>
                                                         <option>1</option>
                                                         <option>2</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-4">
-                                                    <select class="form-control w-100 border-light shadow-sm">
+                                                    <select class="form-select w-100 border-light shadow-sm">
                                                         <option>Bulan</option>
                                                         <option>Januari</option>
                                                         <option>Februari</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-4">
-                                                    <select class="form-control w-100 border-light shadow-sm">
+                                                    <select class="form-select w-100 border-light shadow-sm">
                                                         <option>Tahun</option>
                                                         <option>2023</option>
                                                     </select>
@@ -325,26 +325,57 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">NIK / No. BJPS</label>
-                                        <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="NIK / No. BJPS">
+                                        <div class="col-sm-4 offset-sm-3">
+                                            <div class="text-start">
+                                                <button class="btn btn-sm btn-primary" id="cariMR">Search <i class="fa-solid fa-magnifying-glass"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-11">
+                                        <div class="col-sm-4">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-primary">Search <i class="fa-solid fa-magnifying-glass"></i></button>
-                                                <button class="btn btn-sm btn-light" onclick="stepOne()">
+                                                <button class="btn btn-sm btn-light text-start" onclick="stepOne()">
                                                     <i class="fa-solid fa-arrow-left"></i>
                                                     Previous
                                                 </button>
-                                                <button class="btn btn-sm btn-success" onclick="stepTwo()">
+                                                <button class="btn btn-sm btn-success text-end" onclick="stepTwo()">
                                                     Next
                                                     <i class="fa-solid fa-arrow-right"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="resultCari">
+                                        <div class="mb-3 row">
+                                            <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">MR</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control bg-light border-light shadow-sm" value="12378123" id="nama_pasien" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Nama</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control bg-light border-light shadow-sm" value="Nama Pasien" id="nama_pasien" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Tanggal Lahir</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control bg-light border-light shadow-sm" value="20-05-2000"  id="nama_pasien" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">No.HP / WA</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control bg-light border-light shadow-sm" value="08121829182"  id="nama_pasien" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Email</label>
+                                            <div class="col-sm-8">
+                                              <input type="text" class="form-control border-light shadow-sm" id="nama_pasien" placeholder="Email">
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -390,7 +421,7 @@
                                     <div class="mb-3 row" id="input_jamdatang">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jam Kedatangan</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_jamdatang" placeholder="Jam Kedatangan">
+                                          <input type="text" class="form-control border-light shadow-sm timepicker" id="pilih_jamdatang" placeholder="Jam Kedatangan">
                                         </div>
                                     </div>
 
@@ -404,11 +435,11 @@
                                     <div class="row">
                                         <div class="col-sm-11">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-light" onclick="stepOne()">
+                                                <button class="btn btn-sm btn-light text-start" onclick="stepOne()">
                                                     <i class="fa-solid fa-arrow-left"></i>
                                                     Previous
                                                 </button>
-                                                <button class="btn btn-sm btn-success" onclick="stepThree()">
+                                                <button class="btn btn-sm btn-success text-end" onclick="stepThree()">
                                                     Next
                                                     <i class="fa-solid fa-arrow-right"></i>
                                                 </button>
@@ -598,7 +629,19 @@
    
     <script src="assets/js/jquery-3.6.3.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://plugins.slyweb.ch/jquery-clock-timepicker/jquery-clock-timepicker.min.js?v=2.6.2"></script>
     <script type="text/javascript">
+        $('.timepicker').clockTimePicker({
+            duration: true,
+            durationNegative: false,
+            precision: 5,
+            i18n: {
+                cancelButton: 'Abbrechen'
+            },
+            onAdjust: function(newVal, oldVal) {
+                //...
+            }
+        });
         
         let html = '';
         let size = 0;
@@ -718,6 +761,7 @@
         $('#input_jamdatang').hide();
         $('#input_ket').hide();
         $('#finish').hide();
+        $('#resultCari').hide();
 
         $('#pilih_poliklinik').click(function () {
             $('#modalPoli').modal('show');
@@ -802,11 +846,15 @@
             });
         });
 
-         $("#cariJaminan").on("keyup", function() {
+        $("#cariJaminan").on("keyup", function() {
             var value = $(this).val().toLowerCase();
             $("#listJaminan *").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
             });
+        });
+
+        $("#cariMR").click(function() {
+           $('#resultCari').fadeIn();
         });
     </script>
 </body>
