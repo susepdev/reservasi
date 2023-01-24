@@ -213,9 +213,6 @@
                             <div class="row">
                                 <div class="col-md-8 m-auto">
                                     <div class="row">
-                                        <div class="text-center" id="loading">
-                                            <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" width="40px">
-                                        </div>
                                         <div class="col-sm-6 col-6 option-form">
                                             <div class="w-100 pilih-pasien text-center shadow-sm hvr-grow" onclick="showFormPasien1();">
                                                 <img src="assets/images/health-check.png" width="45" alt="">
@@ -386,35 +383,40 @@
                                     <div class="mb-3 row">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Poliklinik</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_poliklinik" placeholder="--Pilih Poliklinik--" readonly>
+                                            <input type="hidden" name="id_poliklinik" id="id_poliklinik">
+                                            <input type="text" class="form-control form-list border-light shadow-sm" id="pilih_poliklinik" placeholder="--Pilih Poliklinik--" readonly>
                                         </div>
                                     </div>
                                     
                                     <div class="mb-3 row" id="input_dokter">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Dokter</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_dokter" placeholder="--Pilih Dokter--" readonly>
+                                            <input type="hidden" name="id_dokter" id="id_dokter">
+                                            <input type="text" class="form-control form-list border-light shadow-sm" id="pilih_dokter" placeholder="--Pilih Dokter--" readonly>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row" id="input_jaminan">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jaminan</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_jaminan" placeholder="--Pilih Jaminan--" readonly>
+                                            <input type="hidden" name="id_jaminan" id="id_jaminan">
+                                            <input type="text" class="form-control form-list border-light shadow-sm" id="pilih_jaminan" placeholder="--Pilih Jaminan--" readonly>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row" id="input_tanggal">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Tanggal Booking</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_tanggal" placeholder="--Pilih Tanggal Booking--" readonly>
+                                            <input type="hidden" name="id_tanggal" id="id_hari">
+                                            <input type="hidden" name="id_tanggal" id="id_tanggal">
+                                            <input type="text" class="form-control form-list border-light shadow-sm" id="pilih_tanggal" placeholder="--Pilih Tanggal Booking--" readonly>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row" id="input_jam">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Jam Praktek</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_jam" placeholder="--Pilih Jam Praktek--" readonly>
+                                            <input type="text" class="form-control form-list border-light shadow-sm" id="pilih_jam" placeholder="--Pilih Jam Praktek--" readonly>
                                         </div>
                                     </div>
 
@@ -428,18 +430,18 @@
                                     <div class="mb-3 row" id="input_ket">
                                         <label for="nama_pasien" class="col-sm-3 col-form-label pb-0 fs13 fw-bold text-end">Keterangan</label>
                                         <div class="col-sm-8">
-                                          <input type="text" class="form-control border-light shadow-sm" placeholder="Keterangan">
+                                          <input type="text" class="form-control border-light shadow-sm" id="pilih_keterangan" placeholder="Keterangan">
                                         </div>
                                     </div>
                                   
                                     <div class="row">
                                         <div class="col-sm-11">
                                             <div class="text-end">
-                                                <button class="btn btn-sm btn-light text-start" onclick="stepOne()">
+                                                <button class="btn btn-sm btn-light shadow-sm text-start" onclick="stepOne()">
                                                     <i class="fa-solid fa-arrow-left"></i>
                                                     Previous
                                                 </button>
-                                                <button class="btn btn-sm btn-success text-end" onclick="stepThree()">
+                                                <button class="btn btn-sm btn-success shadow-sm text-end btn-next2" onclick="stepThree()" disabled>
                                                     Next
                                                     <i class="fa-solid fa-arrow-right"></i>
                                                 </button>
@@ -494,17 +496,19 @@
                         <input type="text" name="" id="cariPoli" class="form-control border-0 shadow-sm" placeholder="Cari Poliklinik Biar Cepet...">
                     </form>
                 </div>
-                <div class="m-1" id="listPoli">
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli Umum')">
+                <div class="m-1" id="boxListPoli">
+                    <div id="errorPoli" class="fs13 text-center text-danger">Data tidak ditemukan!</div>
+                    <div id="listPoli"></div>
+                    <button type="button" class="btn btn-primary btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli(1, 'Poli Umum')">
                         POLI UMUM
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli Gigi')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli(2, 'Poli Gigi')">
                         POLI GIGI
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli Anak')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli(3, 'Poli Anak')">
                         POLI ANAK
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli('Poli KIA')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectPoli(4, 'Poli KIA')">
                         POLI KIA
                     </button>
                 </div>
@@ -528,17 +532,19 @@
                         <input type="text" name="" id="cariDokter" class="form-control border-0 shadow-sm" placeholder="Cari Dokter Biar Cepet...">
                     </form>
                 </div>
-                <div class="m-1" id="listDokter">
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Agus')">
+                <div class="m-1" id="boxListDokter">
+                    <div id="errorDokter" class="fs13 text-center text-danger">Data tidak ditemukan!</div>
+                    <div id="listDokter"></div>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter(1, 'Dr.Agus')">
                         Dr.Agus
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Mei')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter(2, 'Dr.Mei')">
                         Dr.Mei
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Juli')">
+                    <button type="button" class="btn btn-light btn-primary btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter(3, 'Dr.Juli')">
                         Dr.Juli
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter('Dr.Juno')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectDokter(4, 'Dr.Juno')">
                         Dr.Juno
                     </button>
                 </div>
@@ -556,23 +562,25 @@
                 <h6 class="modal-title" id="exampleModalLabel">Pilih Jaminan</h6>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body pb-2">
+              <div class="modal-body pb-4">
                 <div class="m-2">
                     <form>
                         <input type="text" name="" id="cariJaminan" class="form-control border-0 shadow-sm" placeholder="Cari Jaminan Biar Cepet...">
                     </form>
                 </div>
-                <div class="m-1" id="listJaminan">
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('BPJS')">
+                <div class="m-1" id="boxListJaminan">
+                    <div id="errorJaminan" class="fs13 text-center text-danger">Data tidak ditemukan!</div>
+                    <div id="listJaminan"></div>
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan(1, 'BPJS')">
                         BPJS
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('Pribadi')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan(2, 'Pribadi')">
                         Pribadi
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('Admedika')">
+                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan(3, 'Admedika')">
                         Admedika
                     </button>
-                    <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan('PT. ABC')">
+                    <button type="button" class="btn btn-light btn-primary btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJaminan(4, 'PT. ABC')">
                         PT. ABC
                     </button>
                 </div>
@@ -591,16 +599,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('20-01-2022, JUMAT')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('20-01-2022', 'JUMAT', '20-01-2022, JUMAT')">
                     20-01-2022, JUMAT
                 </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('21-01-2022, SABTU')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('20-01-2022', 'SABTU', '21-01-2022, SABTU')">
                     21-01-2022, SABTU
                 </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('22-01-2022, MINGGU')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('20-01-2022', 'MINGGU', '22-01-2022, MINGGU')">
                     22-01-2022, MINGGU
                 </button>
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('23-01-2022, SENIN')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectTanggal('20-01-2022', 'SENIN', '23-01-2022, SENIN')">
                     23-01-2022, SENIN
                 </button>
               </div>
@@ -618,7 +626,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJam('SORE, (14:00 - 19:00) - (0)')">
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJam('07:00', '12:00', 'SORE, (07:00 - 12:00) - (0)')">
+                    PAGI, (07:00 - 12:00) - (0)
+                </button>
+                <button type="button" class="btn btn-light btn-sm border-0 shadow-sm fs13 m-1" onclick="selectJam('14:00', '19:00', 'SORE, (14:00 - 19:00) - (0)')">
                     SORE, (14:00 - 19:00) - (0)
                 </button>
               </div>
@@ -687,7 +698,6 @@
         
         $('#random-position').append(html);
 
-        $('#loading').hide();
         $('#form1').hide();
         $('#form2').hide();
         $('#content_step_2').hide();
@@ -783,42 +793,99 @@
             $('#modalJam').modal('show');
         });
 
-        function selectPoli(str) {
+        function selectPoli(id, str) {
+            $('#id_poliklinik').val('');
+            $('#id_poliklinik').val(id);
             $('#pilih_poliklinik').val('');
             $('#pilih_poliklinik').val(str);
             $('#modalPoli').modal('hide');
             $('#input_dokter').fadeIn();
+
+            $('#id_dokter').val('');
+            $('#pilih_dokter').val('');
+            $('#pilih_jaminan').val('');
+            $('#pilih_tanggal').val('');
+            $('#pilih_jam').val('');
+
+            $('#input_jaminan').fadeOut();
+            $('#input_tanggal').fadeOut();
+            $('#input_jam').fadeOut();
+            $('#input_jamdatang').fadeOut();
+            $('#input_ket').fadeOut();
+
+            cekNext2();
         }
 
-        function selectDokter(str) {
+        function selectDokter(id, str) {
+            $('#id_dokter').val('');
+            $('#id_dokter').val(id);
             $('#pilih_dokter').val('');
             $('#pilih_dokter').val(str);
             $('#modalDokter').modal('hide');
             $('#input_jaminan').fadeIn();
+
+            $('#id_jaminan').val('');
+            $('#pilih_jaminan').val('');
+            $('#input_tanggal').fadeOut();
+            $('#input_jam').fadeOut();
+            $('#input_jamdatang').fadeOut();
+            $('#input_ket').fadeOut();
+
+            cekNext2();
         }
 
-        function selectJaminan(str) {
+        function selectJaminan(id, str) {
+            $('#id_jaminan').val('');
+            $('#id_jaminan').val(id);
             $('#pilih_jaminan').val('');
             $('#pilih_jaminan').val(str);
             $('#modalJaminan').modal('hide');
             $('#input_tanggal').fadeIn();
+
+            $('#pilih_tanggal').val('');
+            $('#input_jam').fadeOut();
+            $('#input_jamdatang').fadeOut();
+            $('#input_ket').fadeOut();
+
+            cekNext2();
         }
 
-        function selectTanggal(str) {
+        function selectTanggal(tgl, hari, str) {
+            $('#id_tanggal').val('');
+            $('#id_tanggal').val(tgl);
+            $('#id_hari').val('');
+            $('#id_hari').val(hari);
             $('#pilih_tanggal').val('');
             $('#pilih_tanggal').val(str);
             $('#modalTanggal').modal('hide');
             $('#input_jam').fadeIn();
+
+            $('#pilih_jam').val('');
+            $('#input_jamdatang').fadeOut();
+            $('#input_ket').fadeOut();
+
+            cekNext2();
         }
 
-        function selectJam(str) {
+        function selectJam(jam_awal, jam_akhir, str) {
+            $('#pilih_jamdatang').val(jam_awal);
             $('#pilih_jam').val('');
             $('#pilih_jam').val(str);
             $('#modalJam').modal('hide');
             $('#input_jamdatang').fadeIn();
             $('#input_ket').fadeIn();
+
+            cekNext2();
         }
 
+        function cekNext2() {
+            var cek = $('#pilih_jam').val();
+            if (cek!=='') {
+                $('.btn-next2').prop("disabled", false);
+            } else {
+                $('.btn-next2').prop("disabled", true);
+            }
+        }
         
         function Finish() {
             if (agree == 0) {
@@ -832,26 +899,58 @@
             }
         }
 
+        $("#errorPoli").hide();
         $("#cariPoli").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $("#listPoli *").filter(function() {
+            var count = 0;
+            $("#boxListPoli *").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                if ($(this).text().toLowerCase().indexOf(value) > -1) {
+                    count += 1;
+                }
             });
+            if (count == 0) {
+                $("#errorPoli").show();
+            } else {
+                $("#errorPoli").hide();
+            }
         });
 
+        $("#errorDokter").hide();
         $("#cariDokter").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $("#listDokter *").filter(function() {
+            var count = 0;
+            $("#boxListDokter *").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                if ($(this).text().toLowerCase().indexOf(value) > -1) {
+                    count += 1;
+                }
             });
+            if (count == 0) {
+                $("#errorDokter").show();
+            } else {
+                $("#errorDokter").hide();
+            }
         });
 
+        $("#errorJaminan").hide();
         $("#cariJaminan").on("keyup", function() {
             var value = $(this).val().toLowerCase();
-            $("#listJaminan *").filter(function() {
+            var count = 0;
+            $("#boxListJaminan *").filter(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                if ($(this).text().toLowerCase().indexOf(value) > -1) {
+                    count += 1;
+                }
             });
+            if (count == 0) {
+                $("#errorJaminan").show();
+            } else {
+                $("#errorJaminan").hide();
+            }
         });
+
+
 
         $("#cariMR").click(function() {
            $('#resultCari').fadeIn();
